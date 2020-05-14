@@ -87,6 +87,8 @@ services:
     ports:
      - "80:80"
      - "443:443"
+    volumes:
+     - certs:/etc/httpd/ssl
 
   idp:
     build:
@@ -124,10 +126,16 @@ services:
 
   sp:
     build: ./sp/2.6.1
-    image: oapass/sp:20190813@sha256:d75554dd82191ec3201494a2c0db5ba632d0e37141bba6561b5d48fdee916f38
+    image: oapass/sp:20191029
     container_name: sp
+    depends_on:
+     - proxy
     networks:
-     - back
+     back:
+      aliases:
+        - pass.local
+    volumes:
+     - certs:/etc/httpd/ssl
     secrets:
      - source: sp_key
 
@@ -293,6 +301,8 @@ volumes:
   mailstate:
     driver: local
   maildata:
+    driver: local
+  certs:
     driver: local
 
 networks:
