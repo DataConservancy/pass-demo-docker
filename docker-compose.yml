@@ -249,7 +249,7 @@ services:
 
   notification:
     build: notification-services/0.1.0-3.4
-    image: oapass/notification-services:0.1.0-3.4-SNAPSHOT@sha256:a7ce9069f92d2a2c8a0ab2558718f8f21097880272af20a4868a31a013d78da5
+    image: oapass/notification-services:0.1.0-3.4@sha256:438372625923f1b71af3f9142dc4f142db040c16d6871b07ab52fc06a3bc8e8f
     container_name: notification
     networks:
       - back
